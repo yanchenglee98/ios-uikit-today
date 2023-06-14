@@ -35,6 +35,23 @@ class ReminderListViewController: UICollectionViewController {
         collectionView.dataSource = dataSource
     }
 
+    /*
+     When a user taps a list cell, the tap can change the cell to a selected mode or initiate some other behavior.
+     Since not showing the item that user tapped is selected, return false
+     */
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let id = reminders[indexPath.item].id
+        // push the detail view controller to the navigation stack, causing the detail view to push onto the screen
+        pushDetailViewForReminder(withId: id)
+        return false
+    }
+    
+    func pushDetailViewForReminder(withId id: Reminder.ID) {
+        let reminder = reminder(withId: id)
+        let viewController = ReminderViewController(reminder: reminder)
+        // push the view controller onto the navigation controller stack
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
     // creates a new list configuration variable with the grouped appearance.
     private func listLayout() -> UICollectionViewCompositionalLayout {
