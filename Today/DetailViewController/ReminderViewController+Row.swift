@@ -18,6 +18,8 @@ extension ReminderViewController {
         case notes
         case time
         case title
+        case editableDate(Date)
+        case editableText(String?)
         
         // returns appropriate SF symbol name for each case
         var imageName: String? {
