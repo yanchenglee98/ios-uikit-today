@@ -13,6 +13,7 @@ extension ReminderViewController {
      diffable data source use hash values to determine which elements have changed between snapshot
      */
     enum Row: Hashable {
+        case header(String)
         case date
         case notes
         case time
